@@ -1,0 +1,18 @@
+name: LLM QA checks
+on: [push, pull_request]
+jobs:
+  robot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Run Robot Framework suite (fake backend, no API key needed)
+        run: python -m robot --pythonpath . --outputdir results tests/robot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: robot-results
+          path: results

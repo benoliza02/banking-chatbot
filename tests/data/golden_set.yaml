@@ -1,0 +1,26 @@
+# Golden set: expected behaviour the assistant must keep, release after release.
+- id: block_card
+  question: My card was stolen. How do I block it?
+  must_include: ["block", "free"]
+  source: card_blocking
+- id: replacement_time
+  question: How long does a replacement card take to arrive?
+  must_include: ["7 working days"]
+  source: card_blocking
+- id: instant_speed
+  question: How fast do instant payments reach the recipient?
+  must_include: ["10 seconds"]
+  source: instant_payments
+- id: atm_fees
+  question: How many free ATM withdrawals do I get each month?
+  must_include: ["5"]
+  must_not_include: ["unlimited"]
+  source: card_fees
+- id: fx_fee
+  question: What is the currency conversion fee for card payments?
+  must_include: ["1.5"]
+  source: card_fees
+- id: digital_euro
+  question: When will the digital euro launch?
+  must_include: ["not yet confirmed"]
+  source: digital_euro
