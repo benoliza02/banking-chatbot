@@ -25,6 +25,8 @@ app/
   retriever.py        Small BM25-style retriever, no heavy dependencies
   llm.py              Pluggable LLM backends: fake, anthropic, openai, ollama
   assistant.py        Retrieve -> prompt -> answer, with sources
+  chat_server.py      Local chat window with live QA checks (standard library only)
+  static/chat.html    The chat page
 qa/
   evaluators.py       Hallucination, groundedness, refusal, PII and fact checks
   AssistantLibrary.py Robot Framework keyword library
@@ -45,6 +47,14 @@ python -m robot --pythonpath . --outputdir results tests/robot
 ```
 
 Open `results/report.html` to see the results.
+
+### Chat with the assistant
+
+```bash
+python -m app.chat_server
+```
+
+Open http://localhost:8000. Each answer shows the same QA checks the tests use (groundedness, invented numbers, sensitive data, sources). Tick **Hallucinate mode** to see the checks turn red. Stop the server with Ctrl+C.
 
 ### See the tests catch a hallucination
 
